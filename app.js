@@ -1,5 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 
 var url = "https://www.reddit.com/hot/";
@@ -18,6 +19,15 @@ request(url, function (err, res, html){
     
 
     });
+//write data
+fs.writeFile('output.txt', JSON.stringify(items, null, 4), function(err){
+  if(err) {
+    console.log(err);
+  } else {
+    console.log(`Scraped data from ${url} has been added to a file.`);
+  }
+})
+
     console.log(items);
   }
 });
